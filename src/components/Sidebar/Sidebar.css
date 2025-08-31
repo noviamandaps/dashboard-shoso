@@ -1,0 +1,19 @@
+/* Import the existing sidebar styles */
+@import url('../../../css/component/sidebar.css');
+
+/* Override with our custom styles */
+.sidebar {
+  width: 280px;
+  overflow-y: auto;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar.show {
+    transform: translateX(0);
+  }
+}

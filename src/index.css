@@ -1,0 +1,233 @@
+@import url('../css/styles.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for the original design */
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+  }
+}
+
+@layer components {
+  /* Sidebar styles */
+  .sidebar {
+    @apply bg-white border-r border-gray-200 h-screen overflow-y-auto;
+  }
+  
+  .logo-brand {
+    @apply flex items-center gap-3 px-6 py-4;
+  }
+  
+  .title-store {
+    @apply text-lg font-semibold text-gray-900 mb-0;
+  }
+  
+  .tagline-store {
+    @apply text-sm text-gray-500 mb-0;
+  }
+  
+  /* Menu styles */
+  .menu {
+    @apply px-4 pb-4;
+  }
+  
+  .section-menu {
+    @apply mb-6;
+  }
+  
+  .item-menu {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-150 no-underline;
+  }
+  
+  .item-menu.active {
+    @apply bg-blue-50 text-blue-600 font-medium;
+  }
+  
+  .item-menu svg {
+    @apply w-5 h-5 flex-shrink-0;
+  }
+  
+  .item-menu p {
+    @apply mb-0 text-sm;
+  }
+  
+  .circle-notif {
+    @apply w-6 h-6 bg-red-500 text-white text-xs font-medium flex items-center justify-center;
+  }
+  
+  /* Content area styles */
+  .content {
+    @apply bg-gray-50 p-6;
+  }
+  
+  .nav-content {
+    @apply flex justify-between items-start mb-8;
+  }
+  
+  .photo-profile {
+    @apply w-12 h-12 rounded-full object-cover;
+  }
+  
+  .title-content {
+    @apply text-xl font-semibold text-gray-900 mb-1;
+  }
+  
+  .subtitle-content {
+    @apply text-sm text-gray-600 mb-0;
+  }
+  
+  .btn-link {
+    @apply text-blue-600 hover:text-blue-700 font-medium no-underline;
+  }
+  
+  .search-wrapper {
+    @apply flex items-center gap-3;
+  }
+  
+  .search-bar {
+    @apply relative;
+  }
+  
+  .search-bar input {
+    @apply w-80 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  }
+  
+  .btn-setting {
+    @apply w-10 h-10 bg-white border border-gray-300 hover:bg-gray-50 flex items-center justify-center;
+  }
+  
+  /* Product card styles */
+  .product-card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow duration-200;
+  }
+  
+  .product-detail {
+    @apply flex justify-between items-center;
+  }
+  
+  .label-detail {
+    @apply text-xs text-gray-500 uppercase tracking-wide font-medium mb-0;
+  }
+  
+  .title-detail {
+    @apply text-base font-semibold text-gray-900 mb-0;
+  }
+  
+  .price-detail {
+    @apply text-lg font-bold text-gray-900 mb-0;
+  }
+  
+  .btn-fav {
+    @apply p-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors duration-150;
+  }
+  
+  .btn-fav.active {
+    @apply bg-red-50 border-red-200 text-red-600;
+  }
+  
+  .buy-product {
+    @apply px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors duration-150;
+  }
+  
+  .buy-product.active {
+    @apply bg-blue-600 text-white hover:bg-blue-700;
+  }
+  
+  /* Store card styles */
+  .store-card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200;
+  }
+  
+  .store-logo-wrapper {
+    @apply absolute top-16 left-6;
+  }
+  
+  .store-logo-circle {
+    @apply w-16 h-16 bg-white rounded-full flex items-center justify-center border-4 border-white shadow-sm;
+  }
+  
+  .store-logo {
+    @apply w-10 h-10 object-contain;
+  }
+  
+  .store-name {
+    @apply flex justify-between items-start px-6 pt-8 pb-4;
+  }
+  
+  .username-store {
+    @apply text-sm text-gray-500 mb-0;
+  }
+  
+  .btn-follow {
+    @apply px-4 py-2 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition-colors duration-150;
+  }
+  
+  .btn-follow.active {
+    @apply bg-blue-600 text-white border-blue-600 hover:bg-blue-700;
+  }
+  
+  .store-detail {
+    @apply flex justify-between px-6 pb-6;
+  }
+  
+  .section-detail {
+    @apply text-center;
+  }
+  
+  .section-detail h6 {
+    @apply text-lg font-bold text-gray-900 mb-1;
+  }
+  
+  .section-detail p {
+    @apply text-xs text-gray-500 mb-0;
+  }
+  
+  .vertical-line {
+    @apply w-px bg-gray-200;
+  }
+  
+  .title-section-content {
+    @apply text-xl font-semibold text-gray-900;
+  }
+  
+  /* Toggle theme styles */
+  .toggle-theme {
+    @apply hidden;
+  }
+  
+  .label-toggle {
+    @apply relative w-12 h-6 bg-gray-300 rounded-full cursor-pointer transition-colors duration-300;
+  }
+  
+  .label-toggle::after {
+    @apply absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-300;
+    content: '';
+  }
+  
+  .toggle-theme:checked + .label-toggle {
+    @apply bg-blue-600;
+  }
+  
+  .toggle-theme:checked + .label-toggle::after {
+    @apply transform translate-x-6;
+  }
+  
+  .ic-theme {
+    @apply absolute top-1/2 transform -translate-y-1/2;
+  }
+  
+  #ic-dark {
+    @apply left-1;
+  }
+  
+  #ic-light {
+    @apply right-1;
+  }
+  
+  .label-mode {
+    @apply text-sm font-medium text-gray-700;
+  }
+}
