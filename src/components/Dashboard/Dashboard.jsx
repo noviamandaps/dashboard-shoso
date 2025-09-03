@@ -6,7 +6,7 @@ import './Dashboard.css'
 
 const Dashboard = () => {
   return (
-    <main className="content">
+    <main>
       <Header />
       <ProductSection />
       <StoreSection />

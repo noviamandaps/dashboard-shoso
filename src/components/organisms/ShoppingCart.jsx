@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useCart } from '../../context/CartContext';
-import Button from '../atoms/Button';
 
 const ShoppingCart = ({ isOpen, onClose }) => {
   const { items, total, removeItemFromCart, updateItemQuantity, clearCart, getCartTotal } = useCart();
@@ -9,125 +8,264 @@ const ShoppingCart = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden">
-      {/* Backdrop */}
-      <div 
-        className="fixed inset-0 bg-black bg-opacity-50 transition-opacity" 
-        onClick={onClose}
-        aria-hidden="true"
-      ></div>
-      
+    <div style={{ 
+      position: 'fixed', 
+      top: 0, 
+      left: 0, 
+      right: 0, 
+      bottom: 0, 
+      zIndex: 9999,
+      backgroundColor: 'rgba(0,0,0,0.5)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px'
+    }}>
       {/* Cart Panel */}
-      <div className="fixed inset-y-0 right-0 max-w-sm w-full bg-white shadow-xl flex flex-col">
+      <div style={{ 
+        backgroundColor: 'var(--white)',
+        borderRadius: '16px',
+        maxWidth: '500px',
+        width: '100%',
+        maxHeight: '80vh',
+        display: 'flex',
+        flexDirection: 'column',
+        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+      }}>
         {/* Header */}
-        <div className="px-4 py-6 border-b border-neutral-200 flex items-center justify-between">
-          <h2 className="text-lg font-medium text-neutral-900">Your Cart</h2>
+        <div style={{ 
+          padding: '24px',
+          borderBottom: '1px solid var(--grayish)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}>
+          <h4 style={{ margin: 0, color: 'var(--navy)', display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <i className="fa-solid fa-shopping-cart" style={{ fontSize: '20px' }}></i>
+            Your Cart
+          </h4>
           <button 
-            className="text-neutral-500 hover:text-neutral-700"
             onClick={onClose}
-            aria-label="Close"
+            style={{ 
+              background: 'none',
+              border: 'none',
+              fontSize: '24px',
+              color: 'var(--gray)',
+              cursor: 'pointer',
+              padding: '8px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.2s'
+            }}
+            onMouseOver={(e) => e.target.style.backgroundColor = 'var(--light-gray)'}
+            onMouseOut={(e) => e.target.style.backgroundColor = 'transparent'}
+            aria-label="Close Cart"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <i className="fa-solid fa-times"></i>
           </button>
         </div>
 
         {/* Cart Content */}
-        <div className="flex-1 overflow-y-auto p-4">
+        <div style={{ 
+          flex: 1,
+          overflowY: 'auto',
+          padding: items.length === 0 ? '40px 24px' : '24px'
+        }}>
           {items.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-neutral-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-              <p className="text-neutral-500">Your cart is empty</p>
-              <Button 
-                variant="primary" 
-                size="sm" 
-                className="mt-4" 
+            <div style={{ 
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              gap: '16px'
+            }}>
+              <i className="fa-solid fa-shopping-cart" style={{ 
+                fontSize: '48px', 
+                color: 'var(--gray)',
+                marginBottom: '8px'
+              }}></i>
+              <p style={{ color: 'var(--gray)', margin: 0 }}>Your cart is empty</p>
+              <button 
+                className="button btn-rounded active"
+                style={{ borderRadius: '25px' }}
                 onClick={onClose}
               >
                 Continue Shopping
-              </Button>
+              </button>
             </div>
           ) : (
-            <ul className="divide-y divide-neutral-200">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {items.map((item) => (
-                <li key={item.id} className="py-4 flex">
+                <div key={item.id} style={{ 
+                  display: 'flex',
+                  gap: '16px',
+                  padding: '16px',
+                  backgroundColor: 'var(--light-gray)',
+                  borderRadius: '12px',
+                  border: '1px solid var(--grayish)'
+                }}>
                   {/* Product Image */}
-                  <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-neutral-200">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="h-full w-full object-cover object-center"
-                    />
-                  </div>
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    style={{ 
+                      width: '80px',
+                      height: '80px',
+                      objectFit: 'cover',
+                      borderRadius: '8px',
+                      backgroundColor: 'var(--white)'
+                    }}
+                  />
 
                   {/* Product Details */}
-                  <div className="ml-4 flex flex-1 flex-col">
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <div>
-                      <div className="flex justify-between text-base font-medium text-neutral-900">
-                        <h3>{item.name}</h3>
-                        <p className="ml-4">${(item.price * item.quantity).toFixed(2)}</p>
-                      </div>
-                      <p className="mt-1 text-sm text-neutral-500">{item.color}</p>
+                      <h6 style={{ margin: '0 0 4px 0', color: 'var(--navy)' }}>{item.name}</h6>
+                      <p style={{ margin: '0 0 8px 0', fontSize: '14px', color: 'var(--gray)' }}>
+                        {item.color || 'Default Color'}
+                      </p>
+                      <p style={{ margin: 0, fontWeight: '600', color: 'var(--navy)' }}>
+                        Rp {(item.price * item.quantity).toLocaleString()}
+                      </p>
                     </div>
                     
                     {/* Quantity and Remove */}
-                    <div className="flex items-center justify-between text-sm mt-auto">
-                      <div className="flex items-center border border-neutral-300 rounded-md">
+                    <div style={{ 
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      marginTop: '12px'
+                    }}>
+                      <div style={{ 
+                        display: 'flex',
+                        alignItems: 'center',
+                        border: '1px solid var(--grayish)',
+                        borderRadius: '8px',
+                        backgroundColor: 'var(--white)'
+                      }}>
                         <button
-                          className="px-3 py-1 text-neutral-600 hover:bg-neutral-100"
                           onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
+                          style={{ 
+                            background: 'none',
+                            border: 'none',
+                            padding: '8px 12px',
+                            cursor: 'pointer',
+                            color: 'var(--navy)',
+                            fontSize: '16px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                          }}
                         >
-                          -
+                          <i className="fa-solid fa-minus"></i>
                         </button>
-                        <span className="px-3 py-1 text-neutral-800">{item.quantity}</span>
+                        <span style={{ 
+                          padding: '8px 16px',
+                          color: 'var(--navy)',
+                          fontWeight: '500',
+                          minWidth: '40px',
+                          textAlign: 'center'
+                        }}>
+                          {item.quantity}
+                        </span>
                         <button
-                          className="px-3 py-1 text-neutral-600 hover:bg-neutral-100"
                           onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
+                          style={{ 
+                            background: 'none',
+                            border: 'none',
+                            padding: '8px 12px',
+                            cursor: 'pointer',
+                            color: 'var(--navy)',
+                            fontSize: '16px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                          }}
                         >
-                          +
+                          <i className="fa-solid fa-plus"></i>
                         </button>
                       </div>
+                      
                       <button
-                        type="button"
-                        className="text-primary-600 hover:text-primary-800"
                         onClick={() => removeItemFromCart(item.id)}
+                        style={{ 
+                          background: 'none',
+                          border: 'none',
+                          color: 'var(--red)',
+                          cursor: 'pointer',
+                          padding: '8px',
+                          borderRadius: '8px',
+                          fontSize: '16px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          transition: 'all 0.2s'
+                        }}
+                        onMouseOver={(e) => e.target.style.backgroundColor = 'rgba(220, 38, 38, 0.1)'}
+                        onMouseOut={(e) => e.target.style.backgroundColor = 'transparent'}
                       >
-                        Remove
+                        <i className="fa-solid fa-trash"></i>
+                        <span style={{ fontSize: '14px' }}>Remove</span>
                       </button>
                     </div>
                   </div>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           )}
         </div>
 
         {/* Footer */}
         {items.length > 0 && (
-          <div className="border-t border-neutral-200 p-4 space-y-4">
-            <div className="flex justify-between items-center">
-              <span className="text-base font-medium text-neutral-900">Subtotal</span>
-              <span className="font-semibold text-lg">${getCartTotal()}</span>
+          <div style={{ 
+            padding: '24px',
+            borderTop: '1px solid var(--grayish)',
+            backgroundColor: 'var(--light-gray)'
+          }}>
+            <div style={{ 
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '16px'
+            }}>
+              <span style={{ fontSize: '18px', fontWeight: '600', color: 'var(--navy)' }}>
+                Total
+              </span>
+              <span style={{ fontSize: '20px', fontWeight: '700', color: 'var(--navy)' }}>
+                Rp {Math.round(total).toLocaleString()}
+              </span>
             </div>
-            <p className="text-sm text-neutral-500">Shipping and taxes calculated at checkout.</p>
-            <div className="grid grid-cols-2 gap-2">
-              <Button 
-                variant="outline" 
-                className="w-full"
+            <p style={{ 
+              margin: '0 0 16px 0',
+              fontSize: '14px',
+              color: 'var(--gray)',
+              textAlign: 'center'
+            }}>
+              Shipping and taxes calculated at checkout
+            </p>
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button 
+                className="button btn-rounded"
+                style={{ borderRadius: '25px', flex: 1 }}
                 onClick={clearCart}
               >
+                <i className="fa-solid fa-trash" style={{ marginRight: '8px' }}></i>
                 Clear Cart
-              </Button>
-              <Button 
-                variant="primary" 
-                className="w-full"
-                onClick={() => alert('Proceeding to checkout')}
+              </button>
+              <button 
+                className="button btn-rounded active"
+                style={{ borderRadius: '25px', flex: 1 }}
+                onClick={() => {
+                  alert('Proceeding to checkout...');
+                  onClose();
+                }}
               >
+                <i className="fa-solid fa-credit-card" style={{ marginRight: '8px' }}></i>
                 Checkout
-              </Button>
+              </button>
             </div>
           </div>
         )}

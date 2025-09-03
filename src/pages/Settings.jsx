@@ -1,329 +1,297 @@
 import React, { useState } from 'react';
-import Card from '../components/atoms/Card';
-import Button from '../components/atoms/Button';
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('profile');
   
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-neutral-900 mb-6">Account Settings</h1>
-      
-      <div className="flex flex-col md:flex-row gap-6">
-        {/* Sidebar Navigation */}
-        <div className="w-full md:w-64 shrink-0">
-          <Card className="p-0 overflow-hidden">
-            <nav className="flex flex-col">
-              <button
-                onClick={() => setActiveTab('profile')}
-                className={`text-left px-4 py-3 border-l-4 ${
-                  activeTab === 'profile' 
-                    ? 'bg-primary-50 border-primary-600 text-primary-700'
-                    : 'border-transparent hover:bg-neutral-50 text-neutral-700'
-                }`}
-              >
-                Profile Information
-              </button>
-              <button
-                onClick={() => setActiveTab('address')}
-                className={`text-left px-4 py-3 border-l-4 ${
-                  activeTab === 'address' 
-                    ? 'bg-primary-50 border-primary-600 text-primary-700'
-                    : 'border-transparent hover:bg-neutral-50 text-neutral-700'
-                }`}
-              >
-                Shipping Addresses
-              </button>
-              <button
-                onClick={() => setActiveTab('payment')}
-                className={`text-left px-4 py-3 border-l-4 ${
-                  activeTab === 'payment' 
-                    ? 'bg-primary-50 border-primary-600 text-primary-700'
-                    : 'border-transparent hover:bg-neutral-50 text-neutral-700'
-                }`}
-              >
-                Payment Methods
-              </button>
-              <button
-                onClick={() => setActiveTab('password')}
-                className={`text-left px-4 py-3 border-l-4 ${
-                  activeTab === 'password' 
-                    ? 'bg-primary-50 border-primary-600 text-primary-700'
-                    : 'border-transparent hover:bg-neutral-50 text-neutral-700'
-                }`}
-              >
-                Password & Security
-              </button>
-              <button
-                onClick={() => setActiveTab('preferences')}
-                className={`text-left px-4 py-3 border-l-4 ${
-                  activeTab === 'preferences' 
-                    ? 'bg-primary-50 border-primary-600 text-primary-700'
-                    : 'border-transparent hover:bg-neutral-50 text-neutral-700'
-                }`}
-              >
-                Preferences
-              </button>
-            </nav>
-          </Card>
+    <>
+      {/* Navigation Header */}
+      <section>
+        <button
+          aria-controls="sidebar"
+          aria-label="Button Hamburger"
+          className="sidebarOffcanvas mb-5 btn p-0 border-0 d-flex d-lg-none"
+          style={{ background: 'none', border: 'none', fontSize: '24px', color: 'var(--navy)' }}
+        >
+          <i className="fa-solid fa-bars"></i>
+        </button>
+        <nav className="nav-content">
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <img
+              src="/assets/images/photo.webp"
+              alt="Photo Profile"
+              className="photo-profile"
+            />
+            <div>
+              <p className="title-content" style={{ marginBottom: '8px' }}>Settings</p>
+              <p className="subtitle-content">
+                Manage your account preferences and settings
+              </p>
+            </div>
+          </div>
+        </nav>
+      </section>
+
+      {/* Settings Content */}
+      <section style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <h4 className="title-section-content">Account Settings</h4>
+        
+        {/* Settings Tabs */}
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '20px' }}>
+          <button
+            onClick={() => setActiveTab('profile')}
+            className={`button btn-rounded ${activeTab === 'profile' ? 'active' : ''}`}
+            style={{ borderRadius: '25px' }}
+          >
+            Profile Information
+          </button>
+          <button
+            onClick={() => setActiveTab('notifications')}
+            className={`button btn-rounded ${activeTab === 'notifications' ? 'active' : ''}`}
+            style={{ borderRadius: '25px' }}
+          >
+            Notifications
+          </button>
+          <button
+            onClick={() => setActiveTab('privacy')}
+            className={`button btn-rounded ${activeTab === 'privacy' ? 'active' : ''}`}
+            style={{ borderRadius: '25px' }}
+          >
+            Privacy
+          </button>
+          <button
+            onClick={() => setActiveTab('preferences')}
+            className={`button btn-rounded ${activeTab === 'preferences' ? 'active' : ''}`}
+            style={{ borderRadius: '25px' }}
+          >
+            Preferences
+          </button>
         </div>
         
-        {/* Content Area */}
-        <div className="flex-1">
-          {activeTab === 'profile' && (
-            <Card>
-              <h2 className="text-xl font-semibold mb-4">Profile Information</h2>
-              <div className="mb-6 flex items-center">
-                <div className="w-20 h-20 rounded-full bg-neutral-200 flex items-center justify-center overflow-hidden">
-                  <img src="/assets/images/photo.webp" alt="Profile" className="w-full h-full object-cover" />
-                </div>
-                <div className="ml-4">
-                  <Button variant="outline" size="sm">Change Photo</Button>
-                </div>
+        {/* Profile Settings */}
+        {activeTab === 'profile' && (
+          <div style={{ backgroundColor: 'var(--white)', padding: '24px', borderRadius: '12px', border: '1px solid var(--grayish)' }}>
+            <h5 style={{ marginBottom: '20px', color: 'var(--navy)' }}>Profile Information</h5>
+            
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
+              <img
+                src="/assets/images/photo.webp"
+                alt="Profile Photo"
+                style={{ 
+                  width: '80px', 
+                  height: '80px', 
+                  borderRadius: '50%', 
+                  objectFit: 'cover' 
+                }}
+              />
+              <button className="button btn-rounded" style={{ borderRadius: '25px' }}>
+                Change Photo
+              </button>
+            </div>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px', marginBottom: '20px' }}>
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--navy)', fontWeight: '500' }}>First Name</label>
+                <input
+                  type="text"
+                  defaultValue="Yeager"
+                  className="form-control"
+                  style={{ width: '100%' }}
+                />
               </div>
-              
-              <form>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <label className="block text-sm font-medium text-neutral-700 mb-1">First Name</label>
-                    <input
-                      type="text"
-                      defaultValue="John"
-                      className="w-full border border-neutral-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-neutral-700 mb-1">Last Name</label>
-                    <input
-                      type="text"
-                      defaultValue="Doe"
-                      className="w-full border border-neutral-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                    />
-                  </div>
-                </div>
-                
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">Email Address</label>
-                  <input
-                    type="email"
-                    defaultValue="john.doe@example.com"
-                    className="w-full border border-neutral-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  />
-                </div>
-                
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">Phone Number</label>
-                  <input
-                    type="tel"
-                    defaultValue="+1 (555) 123-4567"
-                    className="w-full border border-neutral-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  />
-                </div>
-                
-                <div className="flex justify-end">
-                  <Button variant="primary">Save Changes</Button>
-                </div>
-              </form>
-            </Card>
-          )}
-          
-          {activeTab === 'address' && (
-            <Card>
-              <h2 className="text-xl font-semibold mb-4">Shipping Addresses</h2>
-              <div className="space-y-4">
-                <div className="border border-neutral-200 rounded-md p-4">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="font-medium">Home Address</p>
-                      <p className="text-neutral-600">123 Main Street, Apt 4B</p>
-                      <p className="text-neutral-600">New York, NY 10001</p>
-                      <p className="text-neutral-600">United States</p>
-                      <p className="text-neutral-600">Phone: (555) 123-4567</p>
-                    </div>
-                    <div className="flex space-x-2">
-                      <Button variant="outline" size="sm">Edit</Button>
-                      <Button variant="danger" size="sm">Delete</Button>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="border border-neutral-200 rounded-md p-4">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="font-medium">Work Address</p>
-                      <p className="text-neutral-600">456 Business Ave, Floor 5</p>
-                      <p className="text-neutral-600">New York, NY 10002</p>
-                      <p className="text-neutral-600">United States</p>
-                      <p className="text-neutral-600">Phone: (555) 987-6543</p>
-                    </div>
-                    <div className="flex space-x-2">
-                      <Button variant="outline" size="sm">Edit</Button>
-                      <Button variant="danger" size="sm">Delete</Button>
-                    </div>
-                  </div>
-                </div>
-                
-                <Button variant="outline" className="w-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
-                  </svg>
-                  Add New Address
-                </Button>
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--navy)', fontWeight: '500' }}>Last Name</label>
+                <input
+                  type="text"
+                  defaultValue="Eren"
+                  className="form-control"
+                  style={{ width: '100%' }}
+                />
               </div>
-            </Card>
-          )}
-          
-          {activeTab === 'payment' && (
-            <Card>
-              <h2 className="text-xl font-semibold mb-4">Payment Methods</h2>
-              <div className="space-y-4">
-                <div className="border border-neutral-200 rounded-md p-4">
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center">
-                      <div className="w-12 h-8 bg-neutral-800 rounded mr-3 flex items-center justify-center text-white font-bold">
-                        VISA
-                      </div>
-                      <div>
-                        <p className="font-medium">Visa ending in 4567</p>
-                        <p className="text-neutral-500 text-sm">Expires 05/2028</p>
-                      </div>
-                    </div>
-                    <div className="flex space-x-2">
-                      <Button variant="outline" size="sm">Edit</Button>
-                      <Button variant="danger" size="sm">Delete</Button>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="border border-neutral-200 rounded-md p-4">
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center">
-                      <div className="w-12 h-8 bg-neutral-800 rounded mr-3 flex items-center justify-center text-white font-bold">
-                        MC
-                      </div>
-                      <div>
-                        <p className="font-medium">Mastercard ending in 9876</p>
-                        <p className="text-neutral-500 text-sm">Expires 11/2026</p>
-                      </div>
-                    </div>
-                    <div className="flex space-x-2">
-                      <Button variant="outline" size="sm">Edit</Button>
-                      <Button variant="danger" size="sm">Delete</Button>
-                    </div>
-                  </div>
-                </div>
-                
-                <Button variant="outline" className="w-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
-                  </svg>
-                  Add New Payment Method
-                </Button>
-              </div>
-            </Card>
-          )}
-          
-          {activeTab === 'password' && (
-            <Card>
-              <h2 className="text-xl font-semibold mb-4">Password & Security</h2>
-              <form>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">Current Password</label>
-                  <input
-                    type="password"
-                    className="w-full border border-neutral-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  />
-                </div>
-                
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">New Password</label>
-                  <input
-                    type="password"
-                    className="w-full border border-neutral-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  />
-                </div>
-                
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-neutral-700 mb-1">Confirm New Password</label>
-                  <input
-                    type="password"
-                    className="w-full border border-neutral-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  />
-                </div>
-                
-                <div className="flex justify-end">
-                  <Button variant="primary">Update Password</Button>
-                </div>
-              </form>
-              
-              <hr className="my-6" />
-              
-              <h3 className="text-lg font-medium mb-4">Two-Factor Authentication</h3>
-              <div className="flex items-center justify-between">
+            </div>
+            
+            <div style={{ marginBottom: '16px' }}>
+              <label style={{ display: 'block', marginBottom: '8px', color: 'var(--navy)', fontWeight: '500' }}>Email Address</label>
+              <input
+                type="email"
+                defaultValue="yeager.eren@example.com"
+                className="form-control"
+                style={{ width: '100%' }}
+              />
+            </div>
+            
+            <div style={{ marginBottom: '24px' }}>
+              <label style={{ display: 'block', marginBottom: '8px', color: 'var(--navy)', fontWeight: '500' }}>Phone Number</label>
+              <input
+                type="tel"
+                defaultValue="+1 (555) 123-4567"
+                className="form-control"
+                style={{ width: '100%' }}
+              />
+            </div>
+            
+            <button className="button btn-rounded active" style={{ borderRadius: '25px' }}>
+              Save Changes
+            </button>
+          </div>
+        )}
+        
+        {/* Notification Settings */}
+        {activeTab === 'notifications' && (
+          <div style={{ backgroundColor: 'var(--white)', padding: '24px', borderRadius: '12px', border: '1px solid var(--grayish)' }}>
+            <h5 style={{ marginBottom: '20px', color: 'var(--navy)' }}>Notification Preferences</h5>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderBottom: '1px solid var(--grayish)' }}>
                 <div>
-                  <p className="text-neutral-700">Protect your account with two-factor authentication</p>
-                  <p className="text-neutral-500 text-sm">Currently disabled</p>
+                  <p style={{ margin: '0', color: 'var(--navy)', fontWeight: '500' }}>Order Updates</p>
+                  <p style={{ margin: '0', color: 'var(--gray)', fontSize: '14px' }}>Get notified about your order status</p>
                 </div>
-                <Button variant="outline">Enable</Button>
-              </div>
-            </Card>
-          )}
-          
-          {activeTab === 'preferences' && (
-            <Card>
-              <h2 className="text-xl font-semibold mb-4">Preferences</h2>
-              
-              <h3 className="text-lg font-medium mb-3">Email Notifications</h3>
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center">
-                  <input id="orders" type="checkbox" className="h-4 w-4 text-primary-600 focus:ring-primary-500" defaultChecked />
-                  <label htmlFor="orders" className="ml-2 text-neutral-700">Order updates</label>
-                </div>
-                <div className="flex items-center">
-                  <input id="promos" type="checkbox" className="h-4 w-4 text-primary-600 focus:ring-primary-500" defaultChecked />
-                  <label htmlFor="promos" className="ml-2 text-neutral-700">Promotions and sales</label>
-                </div>
-                <div className="flex items-center">
-                  <input id="auction" type="checkbox" className="h-4 w-4 text-primary-600 focus:ring-primary-500" defaultChecked />
-                  <label htmlFor="auction" className="ml-2 text-neutral-700">Auction alerts</label>
-                </div>
-                <div className="flex items-center">
-                  <input id="newsletter" type="checkbox" className="h-4 w-4 text-primary-600 focus:ring-primary-500" />
-                  <label htmlFor="newsletter" className="ml-2 text-neutral-700">Weekly newsletter</label>
-                </div>
+                <label className="switch">
+                  <input type="checkbox" defaultChecked />
+                  <span className="slider"></span>
+                </label>
               </div>
               
-              <h3 className="text-lg font-medium mb-3">Language & Region</h3>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-neutral-700 mb-1">Language</label>
-                <select className="w-full border border-neutral-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderBottom: '1px solid var(--grayish)' }}>
+                <div>
+                  <p style={{ margin: '0', color: 'var(--navy)', fontWeight: '500' }}>Promotional Emails</p>
+                  <p style={{ margin: '0', color: 'var(--gray)', fontSize: '14px' }}>Receive emails about sales and new products</p>
+                </div>
+                <label className="switch">
+                  <input type="checkbox" defaultChecked />
+                  <span className="slider"></span>
+                </label>
+              </div>
+              
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderBottom: '1px solid var(--grayish)' }}>
+                <div>
+                  <p style={{ margin: '0', color: 'var(--navy)', fontWeight: '500' }}>Auction Alerts</p>
+                  <p style={{ margin: '0', color: 'var(--gray)', fontSize: '14px' }}>Get notified about auction updates</p>
+                </div>
+                <label className="switch">
+                  <input type="checkbox" />
+                  <span className="slider"></span>
+                </label>
+              </div>
+              
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0' }}>
+                <div>
+                  <p style={{ margin: '0', color: 'var(--navy)', fontWeight: '500' }}>Push Notifications</p>
+                  <p style={{ margin: '0', color: 'var(--gray)', fontSize: '14px' }}>Receive browser notifications</p>
+                </div>
+                <label className="switch">
+                  <input type="checkbox" defaultChecked />
+                  <span className="slider"></span>
+                </label>
+              </div>
+            </div>
+            
+            <button className="button btn-rounded active" style={{ borderRadius: '25px', marginTop: '20px' }}>
+              Save Preferences
+            </button>
+          </div>
+        )}
+        
+        {/* Privacy Settings */}
+        {activeTab === 'privacy' && (
+          <div style={{ backgroundColor: 'var(--white)', padding: '24px', borderRadius: '12px', border: '1px solid var(--grayish)' }}>
+            <h5 style={{ marginBottom: '20px', color: 'var(--navy)' }}>Privacy Settings</h5>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--navy)', fontWeight: '500' }}>Current Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  style={{ width: '100%' }}
+                />
+              </div>
+              
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--navy)', fontWeight: '500' }}>New Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  style={{ width: '100%' }}
+                />
+              </div>
+              
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--navy)', fontWeight: '500' }}>Confirm New Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  style={{ width: '100%' }}
+                />
+              </div>
+              
+              <button className="button btn-rounded active" style={{ borderRadius: '25px' }}>
+                Update Password
+              </button>
+            </div>
+            
+            <hr style={{ margin: '24px 0', border: 'none', borderTop: '1px solid var(--grayish)' }} />
+            
+            <h6 style={{ marginBottom: '16px', color: 'var(--navy)' }}>Two-Factor Authentication</h6>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <p style={{ margin: '0', color: 'var(--navy)' }}>Protect your account with 2FA</p>
+                <p style={{ margin: '0', color: 'var(--gray)', fontSize: '14px' }}>Currently disabled</p>
+              </div>
+              <button className="button btn-rounded" style={{ borderRadius: '25px' }}>
+                Enable
+              </button>
+            </div>
+          </div>
+        )}
+        
+        {/* General Preferences */}
+        {activeTab === 'preferences' && (
+          <div style={{ backgroundColor: 'var(--white)', padding: '24px', borderRadius: '12px', border: '1px solid var(--grayish)' }}>
+            <h5 style={{ marginBottom: '20px', color: 'var(--navy)' }}>General Preferences</h5>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--navy)', fontWeight: '500' }}>Language</label>
+                <select className="form-control" style={{ width: '100%' }}>
                   <option>English (US)</option>
+                  <option>Indonesian</option>
                   <option>Spanish</option>
                   <option>French</option>
                   <option>German</option>
-                  <option>Japanese</option>
                 </select>
               </div>
               
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-neutral-700 mb-1">Currency</label>
-                <select className="w-full border border-neutral-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary-500">
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--navy)', fontWeight: '500' }}>Currency</label>
+                <select className="form-control" style={{ width: '100%' }}>
+                  <option>IDR (Rp)</option>
                   <option>USD ($)</option>
                   <option>EUR (€)</option>
                   <option>GBP (£)</option>
                   <option>JPY (¥)</option>
-                  <option>CAD ($)</option>
                 </select>
               </div>
               
-              <div className="flex justify-end">
-                <Button variant="primary">Save Preferences</Button>
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--navy)', fontWeight: '500' }}>Time Zone</label>
+                <select className="form-control" style={{ width: '100%' }}>
+                  <option>Asia/Jakarta (GMT+7)</option>
+                  <option>America/New_York (GMT-5)</option>
+                  <option>Europe/London (GMT+0)</option>
+                  <option>Asia/Tokyo (GMT+9)</option>
+                </select>
               </div>
-            </Card>
-          )}
-        </div>
-      </div>
-    </div>
+              
+              <button className="button btn-rounded active" style={{ borderRadius: '25px' }}>
+                Save Preferences
+              </button>
+            </div>
+          </div>
+        )}
+      </section>
+    </>
   );
 };
 

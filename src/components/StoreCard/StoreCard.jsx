@@ -26,7 +26,7 @@ const StoreCard = ({
         height="100"
       />
       
-      <div className="store-logo-wrapper">
+      {/* <div className="store-logo-wrapper">
         <div className="store-logo-circle">
           <img
             src={logo}
@@ -34,7 +34,7 @@ const StoreCard = ({
             className="store-logo"
           />
         </div>
-      </div>
+      </div> */}
       
       <div className="store-name">
         <div>

@@ -25,7 +25,7 @@
 .content {
   flex: 1;
   padding: 0;
-  margin-left: 280px; /* Same as sidebar width */
+  margin-left: 280px;
   width: calc(100% - 280px);
   min-height: 100vh;
   overflow-x: hidden;
@@ -51,6 +51,13 @@
   
   .sidebar-toggle {
     display: block;
+  }
+}
+
+@media (min-width: 992px) {
+  .content {
+    margin-left: 280px;
+    width: calc(100% - 280px);
   }
 }
 

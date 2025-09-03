@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
-import Navbar from './components/organisms/Navbar';
 import Home from './pages/Home';
 import ExploreProducts from './pages/ExploreProducts';
 import ShoeAuction from './pages/ShoeAuction';
@@ -12,8 +11,7 @@ import Settings from './pages/Settings';
 import ProductDetail from './pages/ProductDetail';
 import Sidebar from './components/Sidebar/Sidebar';
 import { useTheme } from './hooks/useTheme';
-import './App.css';
-import './layout.css';
+import './css/styles.css';
 
 function App() {
   const { theme, toggleTheme } = useTheme();
@@ -39,25 +37,20 @@ function App() {
   return (
     <CartProvider>
       <Router>
-        <div className={`app ${theme}`}>
-          <Sidebar theme={theme} toggleTheme={toggleTheme} activeMenu={activeMenu} onMenuClick={handleMenuClick} />
-          <div className="content">
-            <Navbar />
-            <div className="container mx-auto">
-              <main className="px-4 py-6">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/explore" element={<ExploreProducts />} />
-                  <Route path="/auction" element={<ShoeAuction />} />
-                  <Route path="/orders" element={<Orders />} />
-                  <Route path="/notifications" element={<Notifications />} />
-                  <Route path="/favorites" element={<Favorites />} />
-                  <Route path="/settings" element={<Settings />} />
-                  <Route path="/product/:id" element={<ProductDetail />} />
-                </Routes>
-              </main>
-            </div>
-          </div>
+        <div className={theme}>
+          <Sidebar activeMenu={activeMenu} onMenuClick={handleMenuClick} />
+          <main className="content flex-fill">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/explore" element={<ExploreProducts />} />
+              <Route path="/auction" element={<ShoeAuction />} />
+              <Route path="/orders" element={<Orders />} />
+              <Route path="/notifications" element={<Notifications />} />
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+            </Routes>
+          </main>
         </div>
       </Router>
     </CartProvider>

@@ -1,0 +1,135 @@
+.store-card {
+  border-radius: 24px;
+  background-color: white;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.store-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.store-card > img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.store-logo-wrapper {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.store-logo-circle {
+  bottom: 0;
+  padding: 10px;
+  position: absolute;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: var(--white);
+  outline: thick solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.store-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.store-name {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+  margin-top: 28px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-store {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--navy);
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.username-store {
+  color: var(--grey-secondary);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.store-detail {
+  gap: 16px;
+  margin-top: 20px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fbfbfb;
+}
+
+.section-detail {
+  text-align: center;
+}
+
+.section-detail > h6 {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--navy);
+  margin-bottom: 4px;
+  line-height: 24px;
+}
+
+.section-detail > p {
+  font-weight: 400;
+  font-size: 12px;
+  color: #748c9e;
+}
+
+.vertical-line {
+  border-right: 1px solid #ededed;
+}
+
+.btn-follow {
+  width: 110px;
+  color: var(--white);
+  background-color: var(--blue-primary);
+  border: 1px solid var(--blue-primary);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-follow.active {
+  color: var(--blue-primary);
+  background-color: #f6fafd;
+  border: 1px solid var(--blue-primary);
+}
+
+.btn-follow:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Mobile responsive */
+@media (max-width: 501px) {
+  .store-card > img {
+    width: 100%;
+    height: auto;
+  }
+}
